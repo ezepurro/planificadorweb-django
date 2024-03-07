@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Añadir tarea {% endblock %}
+
+{% block content %}
+
+
+
+    <!-- Content -->
+    <div class="container">
+        <form action="">
+
+                <input type="text" class="form-control"  placeholder="Tarea a realizar" style="padding: 20px; margin: 20px; margin-top: 60px;">
+
+                <label for="exampleFormControlTextarea1" class="form-label" style="margin-left: 20px; color: white;">Fecha de expiración</label>
+                <input type="date" class="form-control" style="padding: 20px; margin: 20px;" placeholder="A">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Descripción" style="padding: 20px; margin: 20px;"></textarea>
+                <a href="#" class="btn btn-primary" style="background-color: rgb(63, 112, 55); border: none; width: 100%; padding: 20px; margin: 20px; margin-bottom: 60px;">Añadir tarea</a>
+
+                      
+        </form>
+    </div>
+
+
+{% endblock %}

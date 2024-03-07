@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Inicio {% endblock %}
+
+{% block content %}
+  <!-- Content -->
+  <div class="container">
+      <div class="row">
+
+          <!-- Tarjeta -->
+          <div class="col-sm-4"">
+              <div class="card" style="width: 18rem; margin: 30px; border-radius: 20px;">
+                  <div class="card-body">
+                  <h5 class="card-title"><a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">Santi</a></h5>
+                  <ul>
+                      <li><a href="{% url 'task_detail' %}" style="text-decoration: none; color: black;">Tarea 1</a></li>
+                      <li><a href="{% url 'task_detail' %}" style="text-decoration: none; color: black;">Tarea 2</a></li>
+                      <li><a href="{% url 'task_detail' %}" style="text-decoration: none; color: black;">Tarea 3</a></li>
+                      <li><a href="{% url 'task_detail' %}" style="text-decoration: none; color: black;">Tarea 4</a></li>
+                  </ul>
+                  <a href="{% url 'member_detail' %}" class="btn btn-primary" style="background-color: black; border: none; width: 49%;">Ver detalles</a>
+                  <a href="{% url 'add_task' %}" class="btn btn-primary" style="background-color: rgb(63, 112, 55);; border: none; width: 49%;">Añadir tareas</a>
+                  </div>
+              </div>                
+          </div>
+
+          
+      </div>      
+  </div>
+{% endblock %}
+

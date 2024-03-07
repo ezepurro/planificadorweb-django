@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador de Tareas | {% block title %} {% endblock %}</title>
+
+
+
+    {% load static %}
+    <!-- Bootstarp css -->
+    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Fontawesome -->
+    <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- Fuentes -->
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body style="background-color: rgb(15, 15, 15);">
+    <!-- Header -->
+    <header>
+        <nav class="navbar" style="padding: 0px 0px 0px 0px;">
+                    
+                <div class="container-fluid" style="background-color: black;">
+                    <div class="col-sm-8" >
+                        <a class="navbar-brand" href="{% url 'home' %}"  style="padding: 20px;"><h4 style="color: whitesmoke;">Planificador de Tareas</h4></a>
+                    </div>
+                    <div class="col-sm-4">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="{% url 'sign_in' %}" class="nav-link" style="color: whitesmoke;">Iniciar Sesión</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="nav-link" style="color: whitesmoke;">Cerrar Sesión</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{% url 'add_member' %}" class="nav-link" style="color: whitesmoke;">Añadir miembro</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <!-- Content -->
+    {% block content %} {% endblock %}
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-fluid" style="background-color: black;">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <ul class="list-inline text-center">
+                <li class="list-inline-item">
+                  <a href="https://www.instagram.com/ezepurro/" target="_blank">
+                    <span class="fa-stack fa-lg" style="padding: 15px;">
+                        <i class="fa fa-instagram fa-stack-1x fa-inverse" style="color: whitesmoke;"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.linkedin.com/in/ezequiel-purro-75920b7a/" target="_blank">
+                    <span class="fa-stack fa-lg" style="padding: 15px;">
+                        <i class="fa fa-linkedin fa-stack-1x fa-inverse" style="color: whitesmoke;"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://github.com/ezepurro" target="_blank">
+                    <span class="fa-stack fa-lg" style="padding: 15px;">                        
+                        <i class="fa fa-github fa-stack-1x fa-inverse" style="color: whitesmoke;"></i>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+              <p class="copyright" style="text-align: center; color: whitesmoke; padding: 10px;">Copyright &copy; 2024 · Ezequiel Purro </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+    <!-- Bootstarp js -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Jquery -->
+    <!-- <script src="vendor/jquery/jquery.min.js"></script>  -->
+</body>
+</html>
