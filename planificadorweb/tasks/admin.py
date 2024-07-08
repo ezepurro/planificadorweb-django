@@ -6,6 +6,10 @@ from .models import Task
 
 class TaskAdmin(admin.ModelAdmin):
     readonly_fields = ('created',)
+    list_display = ('title', 'author', 'isDone', 'expiration', 'target')
+    search_fields = ('title',)
+    date_hierarchy = 'expiration'
+    list_filter = ('author__username',)
 
     # ARREGLO PARA ESTABLECER AL AUTOR COMO EL USUARIO EN USO
     def get_form(self, request, obj=None, **kwargs):
