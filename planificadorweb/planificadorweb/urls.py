@@ -23,6 +23,8 @@ urlpatterns = [
     path('', include('core.urls')),
     # Path users
     path('members/', include('users.urls')),
+    # Path tasks
+    path('tasks/', include('tasks.urls')),
     # Path admin
     path('admin/', admin.site.urls),
 ]
