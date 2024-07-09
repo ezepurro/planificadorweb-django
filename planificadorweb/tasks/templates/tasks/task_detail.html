@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 
-{% block title %} Añadir tarea {% endblock %}
+{% block title %} {{task.title}} {% endblock %}
 
 {% block content %}
 
@@ -12,19 +12,24 @@
                 <div class="row">
                     <div class="col" style="padding: 40px;">
                         <div class="card-body">
-                            <h5 class="card-title" style="color: whitesmoke;">Tarea</h5>
-                            <p class="card-text" style="padding-top: 30px; padding-bottom: 30px; color: whitesmoke;">Descripción de la tarea a desarrollar.</p>
-                            <a href="#" class="btn btn-primary" style="background-color: rgb(2, 82, 2); border: none;">Marcar como completada</a>
+                            <h5 class="card-title" style="color: whitesmoke;">{{task.title}}</h5>
+                            <p class="card-text" style="padding-top: 30px; padding-bottom: 30px; color: whitesmoke;">{{task.description}}</p>
+                            
+                            {% if user == task.target %}
+                                <a href="#" class="btn btn-primary" style="background-color: rgb(2, 82, 2); border: none;">Marcar como completada</a>
+                            {% endif %}
+
                         </div>                    
                     </div>
                     <div class="col" style="text-align: right;">
-                        <a href="#" style="color: whitesmoke; text-decoration: none;"><h3 style="padding: 40px">🢀</h3></a>
+                        <a href="{% url 'dashboard' %}" style="color: whitesmoke; text-decoration: none;"><h3 style="padding: 40px">🢀</h3></a>
                     </div>                    
                 </div>
 
             </div>
         </div>            
     </div>
+
 
 
 {% endblock %}

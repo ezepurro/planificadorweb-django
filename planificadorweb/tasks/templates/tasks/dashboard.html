@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 
-{% block title %} Inicio {% endblock %}
+{% block title %} Tablero {% endblock %}
 
 {% block content %}
   <!-- Content -->
@@ -14,7 +14,7 @@
                   <h5 class="card-title"><a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">Eze</a></h5>
                   <ul>
                     {% for task in tasks reversed %}
-                      <li><a href="{% url 'task_detail' %}" style="text-decoration: none; color: black;">{{task.title}}</a></li>
+                      <li><a href="{% url 'task_detail' task.id %}" style="text-decoration: none; color: black;">{{task.title}}</a></li>
                     {% endfor %}
                   </ul>
                   <a href="{% url 'member_detail' %}" class="btn btn-primary" style="background-color: black; border: none; width: 49%;">Ver detalles</a>

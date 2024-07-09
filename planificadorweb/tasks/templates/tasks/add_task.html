@@ -4,20 +4,18 @@
 
 {% block content %}
 
-
-
     <!-- Content -->
     <div class="container" style="height: 78vh;">
-        <form action="">
+        
+        <form action="" method="POST">
+                {% csrf_token %}
                 <div style="padding: 10px">
-                    <input type="text" class="form-control"  placeholder="Tarea a realizar" style="padding: 20px; margin: 20px;">
+                    {{form.title}}
+                    {{form.description}}
+                    {{form.expiration}}
 
-                    <label for="exampleFormControlTextarea1" class="form-label" style="margin-left: 20px; color: white;">Fecha de expiración</label>
-                    <input type="date" class="form-control" style="padding: 20px; margin: 20px;" placeholder="A">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Descripción" style="padding: 20px; margin: 20px;"></textarea>
-                    <a href="#" class="btn btn-primary" style="background-color: rgb(63, 112, 55); border: none; width: 100%; padding: 20px; margin: 20px; ">Añadir tarea</a>
-                </div>
-                      
+                    <input type="submit" value="Añadir" class="btn btn-primary" style="background-color: rgb(63, 112, 55); border: none; width: 100%; padding: 20px; margin: 20px; " />
+                </div>    
         </form>
     </div>
 
