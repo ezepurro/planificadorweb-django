@@ -32,10 +32,12 @@
                               <li class="list-inline-item">
                                   <a href="{% url 'sign_in' %}" class="nav-link" style="color: whitesmoke;">Iniciar Sesión</a>
                               </li>
-                          {% endif %}
+                          {% else %}
                               <li class="list-inline-item">
                                   <a href="#" class="nav-link" style="color: whitesmoke;">Cerrar Sesión</a>
-                              </li>
+                              </li>                          
+                          {% endif %}
+
                               <li class="list-inline-item">
                                   <a href="{% url 'add_member' %}" class="nav-link" style="color: whitesmoke;">Añadir miembro</a>
                               </li>

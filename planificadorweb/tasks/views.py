@@ -1,13 +1,30 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from .models import Task
 from .forms import TaskForm
 
-# Create your views here.
-
+# FUNCTION-BASED VIEW
+"""
 def dashboard(request):
     tasks = Task.objects.all()
     return render(request, "tasks/dashboard.html", {'tasks':tasks})
+"""
 
+# CLASS-BASED VIEW
+class Dashboard(ListView):
+    # template_name = "tasks/dashboard.html"
+    model = Task
+
+    # def get(self, request, *args, **kwargs):
+        # tasks = Task.objects.all()
+        # return render(request, self.template_name, {'tasks':tasks})
+
+# ---
+
+
+class TaskDetail(DetailView):
+    model = Task
 
 
 def add_task(request):
@@ -23,10 +40,4 @@ def add_task(request):
             return redirect('../dashboard/')
 
     return render(request, "tasks/add_task.html", {'form': task_form})
-
-
-
-def task_detail(request, task_id): 
-    task = get_object_or_404(Task, id=task_id)
-    return render(request, "tasks/task_detail.html", {'task':task})
 
