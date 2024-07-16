@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Editar tarea {% endblock %}
+
+{% block content %}
+
+    <!-- Content -->
+    <div class="container" style="height: 78vh;">
+        
+        <form action="" method="POST">
+                {% csrf_token %}
+                <div style="padding: 10px">
+                
+                    {{form.title}}
+                    {{form.description}}
+                    {{form.expiration}}
+
+                    <input type="submit" value="Editar tarea" class="btn btn-primary" style="background-color: #b39a36; border: none; width: 100%; padding: 20px; margin: 20px; " />
+                </div>    
+        </form>
+    </div>
+
+
+{% endblock %}
