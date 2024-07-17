@@ -2,6 +2,8 @@
 
 {% block title %} Tablero {% endblock %}
 
+{% load static %}
+
 {% block content %}
   <!-- Content -->
   <div class="container" style="height: 78vh;">
@@ -11,10 +13,25 @@
           <div class="col-sm-4"">
               <div class="card" style="width: 18rem; margin: 30px; border-radius: 20px;">
                   <div class="card-body">
-                  <h5 class="card-title"><a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">Eze</a></h5>
+
+                    <div class="header" style="display: flex;">
+                      <div style="flex: 1;">
+                        <h5 class="card-title"> <a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">Eze</a> </h5>
+                      </div>
+                      <div style="width: 20%;  border-radius: 50%; overflow: hidden;">
+                        <a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">
+                          <img src="{% static 'core/img/avatar-ej01.jpeg' %}" style="width: 100%; height: auto;" alt="imagenMiembro">
+                        </a>
+                      </div>  
+                    </div> 
+
                   <ul>
                     {% for task in task_list reversed %}
-                      <li><a href="{% url 'task_detail' task.id %}" style="text-decoration: none; color: black;">{{task.title}}</a></li>
+                      {% if task.isDone %}
+                        <li><s><a href="{% url 'task_detail' task.id %}" style="text-decoration: none; color: black;">{{task.title}}</a></s></li>
+                      {% else %}
+                        <li><a href="{% url 'task_detail' task.id %}" style="text-decoration: none; color: black;">{{task.title}}</a></li>
+                      {% endif %}
                     {% endfor %}
                   </ul>
                   <a href="{% url 'member_detail' %}" class="btn btn-primary" style="background-color: black; border: none; width: 49%;">Ver detalles</a>

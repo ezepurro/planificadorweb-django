@@ -22,7 +22,7 @@ class TaskForm(forms.ModelForm):
                 'rows':3}
             ),
             'expiration': forms.DateInput(attrs={
-                'style':'margin-left: 20px; color: white; width: 100%; padding: 20px',
+                'style':'margin-left: 20px; width: 100%; padding: 20px',
                 'class':'form-label',
                 'type':'date'}
             ),

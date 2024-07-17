@@ -1,11 +1,22 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.http.response import HttpResponse as HttpResponse
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import Task
 from .forms import TaskForm
+
+
+class StaffRequiredMixin(object):
+    # Sirve para verificar si el usuario es staff
+    @method_decorator(staff_member_required)
+    def dispatch(self, request, *args,**kwargs):
+        return super(StaffRequiredMixin, self).dispatch(request, *args, **kwargs)
+
 
 # FUNCTION-BASED VIEW
 """
@@ -27,7 +38,8 @@ class Dashboard(ListView):
 class TaskDetail(DetailView):
     model = Task
 
-
+# Cambiar a TaskCreateView
+# @method_decorator(staff_member_required, name='dispatch')
 def add_task(request):
     task_form = TaskForm()
 
@@ -45,18 +57,24 @@ def add_task(request):
             new_task.save()
             return redirect('../dashboard/')
 
+    if not request.user.is_staff:
+        return redirect('admin:login')
+
     return render(request, "tasks/add_task.html", {'form': task_form})
 
 
-
+@method_decorator(staff_member_required, name='dispatch')
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy("dashboard")
 
 
 
-class TaskUpdateView(UpdateView):
+@method_decorator(staff_member_required, name='dispatch')
+class TaskUpdateView(StaffRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name_suffix = "_update_form"
     success_url = reverse_lazy("dashboard")
+
+

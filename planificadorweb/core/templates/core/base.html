@@ -30,17 +30,21 @@
                         <ul class="list-inline text-center">
                           {% if not user.is_authenticated %}
                               <li class="list-inline-item">
-                                  <a href="{% url 'sign_in' %}" class="nav-link" style="color: whitesmoke;">Iniciar Sesión</a>
+                                  <a href="{% url 'login' %}" class="nav-link" style="color: whitesmoke;">Iniciar Sesión</a>
                               </li>
                           {% else %}
                               <li class="list-inline-item">
-                                  <a href="#" class="nav-link" style="color: whitesmoke;">Cerrar Sesión</a>
-                              </li>                          
-                          {% endif %}
-
+                                  <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="" style="background: none; border: none; color: whitesmoke; cursor: pointer;">Cerrar Sesión</button>
+                                  </form>
+                              </li>   
                               <li class="list-inline-item">
                                   <a href="{% url 'add_member' %}" class="nav-link" style="color: whitesmoke;">Añadir miembro</a>
-                              </li>
+                              </li>                       
+                          {% endif %}
+
+
                           </ul>
                     </div>
                 </div>
