@@ -17,7 +17,11 @@
                             
                             {% if not task.isDone %}
                                 {% if user == task.target %}
-                                    <a href="#" class="btn btn-primary" style="background-color: rgb(2, 82, 2); border: none;">Marcar como completada</a>
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Marcar como completada" class="btn btn-primary" style="background-color: rgb(2, 82, 2); border: none;">
+                                    </form>
+                                    
                                 {% endif %}
                                 {% if user == task.author %}
                                     <a href="{% url 'task_delete' task.id %}" class="btn btn-primary" style="background-color: #cc0022; border: none;">Eliminar tarea</a>

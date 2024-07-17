@@ -12,9 +12,14 @@
                 <div class="row">
                     <div class="card-body" style="text-align: center;">                        
                         <div class="contenedor-imagen-redonda" style="width: 400px; height: 400px; border-radius: 50%; overflow: hidden; margin-left: 30%; margin-top: 30px;">
-                            <img src="{% static 'core/img/avatar-ej01.jpeg' %}" width="200px" height="auto" style="width: 100%; height: auto;" alt="imagenMiembro"> <br>       
+                            {% if member.avatar %}
+                              <img src="{{member.avatar.url}}" class="img-fluid">
+                            {% else %}
+                              <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
+                            {% endif %} 
+                            <br>       
                         </div>      
-                        <h5 class="card-title" style="margin: 25px; color: whitesmoke;">Eze</h5> 
+                        <h5 class="card-title" style="margin: 25px; color: whitesmoke;">{{member.name}}</h5> 
                         {% if user == member.user%}                  
                             <a href="#" class="btn btn-primary" style="background-color: rgb(129, 37, 37); border: none;">Borrar miembro</a>   
                         {% endif %}

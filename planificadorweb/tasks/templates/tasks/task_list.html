@@ -9,37 +9,47 @@
   <div class="container" style="height: 78vh;">
       <div class="row">
 
-          <!-- Tarjeta -->
-          <div class="col-sm-4"">
-              <div class="card" style="width: 18rem; margin: 30px; border-radius: 20px;">
-                  <div class="card-body">
+          {% for member in members_list %}
+            <!-- Tarjeta -->
+            <div class="col-sm-4"">
+                <div class="card" style="width: 18rem; margin: 30px; border-radius: 20px;">
+                    <div class="card-body">
 
-                    <div class="header" style="display: flex;">
-                      <div style="flex: 1;">
-                        <h5 class="card-title"> <a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">Eze</a> </h5>
-                      </div>
-                      <div style="width: 20%;  border-radius: 50%; overflow: hidden;">
-                        <a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">
-                          <img src="{% static 'core/img/avatar-ej01.jpeg' %}" style="width: 100%; height: auto;" alt="imagenMiembro">
-                        </a>
-                      </div>  
-                    </div> 
+                      <div class="header" style="display: flex;">
+                        <div style="flex: 1;">
+                          <h5 class="card-title"> <a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">{{member.name}}</a> </h5>
+                        </div>
+                        <div style="width: 20%;  border-radius: 50%; overflow: hidden;">
+                          <a href="{% url 'member_detail' member.id %}" style="text-decoration: none; color: black;">
+                            {% if member.avatar %}
+                              <img src="{{member.avatar.url}}" class="img-fluid">
+                            {% else %}
+                              <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
+                            {% endif %}
+                          </a>
+                        </div>  
+                      </div> 
 
-                  <ul>
-                    {% for task in task_list reversed %}
-                      {% if task.isDone %}
-                        <li><s><a href="{% url 'task_detail' task.id %}" style="text-decoration: none; color: black;">{{task.title}}</a></s></li>
-                      {% else %}
-                        <li><a href="{% url 'task_detail' task.id %}" style="text-decoration: none; color: black;">{{task.title}}</a></li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                  <a href="{% url 'member_detail' %}" class="btn btn-primary" style="background-color: black; border: none; width: 49%;">Ver detalles</a>
-                  <a href="{% url 'add_task' %}" class="btn btn-primary" style="background-color: rgb(63, 112, 55);; border: none; width: 49%;">Añadir tareas</a>
-                  </div>
-              </div>                
-          </div>  
-
+                    <ul>
+                        {% for task in tasks_list reversed %}
+                          {% if task.target == member.user %}
+                            {% if task.isDone %}
+                              <li><s><a href="{% url 'task_detail' task.id %}" style="text-decoration: none; color: black;">{{task.title}}</a></s></li>
+                            {% else %}
+                              <li><a href="{% url 'task_detail' task.id %}" style="text-decoration: none; color: black;">{{task.title}}</a></li>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                        
+                    </ul>
+                    <a href="{% url 'member_detail' member.id %}" class="btn btn-primary" style="background-color: black; border: none; width: 49%;">Ver detalles</a>
+                    {% if user.is_staff %}
+                      <a href="{% url 'add_task' %}" class="btn btn-primary" style="background-color: rgb(63, 112, 55);; border: none; width: 49%;">Añadir tareas</a>
+                    {% endif %}
+                    </div>
+                </div>                
+            </div>  
+          {% endfor %}
           
       </div>      
   </div>

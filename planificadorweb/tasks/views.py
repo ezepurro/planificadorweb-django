@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import Task
 from .forms import TaskForm
+from registration.models import Member
 
 
 class StaffRequiredMixin(object):
@@ -18,21 +19,22 @@ class StaffRequiredMixin(object):
         return super(StaffRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 
-# FUNCTION-BASED VIEW
-"""
-def dashboard(request):
-    tasks = Task.objects.all()
-    return render(request, "tasks/dashboard.html", {'tasks':tasks})
-"""
 
-# CLASS-BASED VIEW
 class Dashboard(ListView):
-    model = Task
+    context_object_name = 'members_list'
+    model = Member
+    template_name = "tasks/task_list.html"
 
-    #Si fuera un simple templateview, de esta forma se pasa el diccionario de contexto
-    # def get(self, request, *args, **kwargs):
-        # tasks = Task.objects.all()
-        # return render(request, self.template_name, {'tasks':tasks})
+    def get_context_data(self, **kwargs):
+        context = super(Dashboard, self).get_context_data(**kwargs)
+        context.update({
+            'tasks_list': Task.objects.order_by('expiration'),            
+        })
+        return context
+
+    def get_queryset(self):
+        return Member.objects.order_by('name')    
+
 
 
 class TaskDetail(DetailView):
@@ -58,7 +60,7 @@ def add_task(request):
             return redirect('../dashboard/')
 
     if not request.user.is_staff:
-        return redirect('admin:login')
+        return redirect('login')
 
     return render(request, "tasks/add_task.html", {'form': task_form})
 

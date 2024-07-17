@@ -24,24 +24,42 @@
                     
                 <div class="container-fluid" style="background-color: black;">
                     <div class="col-sm-8" >
-                        <a class="navbar-brand" href="{% url 'home' %}"  style="padding: 20px;"><h4 style="color: whitesmoke;">Planificador de Tareas</h4></a>
+                      <ul class="list-inline text-left">
+                        <li class="list-inline-item">
+                          <a class="navbar-brand" href="{% url 'home' %}"  style="padding: 20px;"><h4 style="color: whitesmoke;">Planificador de Tareas</h4></a>
+                        </li>
+                        {% if user.is_authenticated %}
+                          <li class="list-inline-item">
+                            <h6 style="color: whitesmoke;">| Bienvenido <b><a href="{% url 'profile_form' %}" style="color: whitesmoke;">{{user}}</a></b>!</h6>
+                          </li>
+                        {% endif %}
+                      </ul>
                     </div>
                     <div class="col-sm-4">
-                        <ul class="list-inline text-center">
+                        <ul class="list-inline text-right">
                           {% if not user.is_authenticated %}
                               <li class="list-inline-item">
                                   <a href="{% url 'login' %}" class="nav-link" style="color: whitesmoke;">Iniciar Sesión</a>
                               </li>
                           {% else %}
                               <li class="list-inline-item">
+                                  <a href="{% url 'profile_form' %}" class="nav-link" style="color: whitesmoke;">Editar Perfil</a>
+                              </li>
+                              <li class="list-inline-item">
+                              
+                              <a href="{% url 'logoutexp' %}" class="nav-link" style="color: whitesmoke;">Cerrar Sesión</a>
+                              <!-- 
                                   <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
                                     {% csrf_token %}
                                     <button type="submit" class="" style="background: none; border: none; color: whitesmoke; cursor: pointer;">Cerrar Sesión</button>
                                   </form>
+                                -->
                               </li>   
-                              <li class="list-inline-item">
-                                  <a href="{% url 'add_member' %}" class="nav-link" style="color: whitesmoke;">Añadir miembro</a>
-                              </li>                       
+                              {% if user.is_staff %}
+                                <li class="list-inline-item">
+                                    <a href="{% url 'add_member' %}" class="nav-link" style="color: whitesmoke;">Añadir miembro</a>
+                                </li>    +
+                                {% endif %}                   
                           {% endif %}
 
 

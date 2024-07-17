@@ -8,6 +8,8 @@ from django.urls import reverse_lazy
 from .models import Member
 from django import forms
 from .forms import ProfileForm
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -51,3 +53,8 @@ class ProfileUpdate(UpdateView):
 class MemberDetail(DetailView):
     model = Member
     template_name = 'registration/member_detail.html'
+
+
+def logoutexp(request):
+    logout(request)
+    return redirect('dashboard')

@@ -4,12 +4,15 @@
 
 {% block content %}
 
+    {% load static %}
+
     <style>
     label{display:none;}
     </style>
 
     <!-- Content -->
     <div class="container" style="height: 78vh;">
+        <!--
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %} 
             <div style="padding: 100px">
@@ -17,6 +20,30 @@
                 <input type="submit" value="Actualizar" class="btn btn-primary" style="background-color: rgb(63, 112, 55); border: none; width: 100%; padding: 20px; margin: 20px; cursor: pointer;">
             </div>
         </form>
+        -->
+        <div class="row mt-3">
+            <div class="col-md-9 mx-auto mb-5">
+                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="row">
+                    <!-- Previa del avatar -->
+                    <div class="col-md-2">
+                    {% if request.user.member.avatar %}
+                        <img src="{{request.user.member.avatar.url}}" class="img-fluid">
+                        <p class="mt-1"style="color: white;">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
+                    {% else %}
+                        <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
+                    {% endif %}
+                    </div>
+                    <!-- Formulario -->
+                    <div class="col-md-10">
+                    <input type="file" name="avatar" class="form-control-file" id="id_avatar" style="padding: 20px; margin: 20px 0px 20px 0px; color:white" >
+                    {{ form.name }}
+                    <input type="submit" class="btn btn-primary" value="Actualizar" style="background-color: rgb(63, 112, 55); border: none; width: 100%; padding: 20px; margin: 20px; cursor: pointer;">
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 
