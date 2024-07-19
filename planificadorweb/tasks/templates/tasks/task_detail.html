@@ -19,7 +19,7 @@
                                 {% if user == task.target %}
                                     <form method="POST" action="">
                                         {% csrf_token %}
-                                        <input type="submit" value="Marcar como completada" class="btn btn-primary" style="background-color: rgb(2, 82, 2); border: none;">
+                                        <input type="submit" value="Marcar como completada" class="btn btn-primary" style="background-color: rgb(2, 82, 2); border: none; cursor: pointer;">
                                     </form>
                                     
                                 {% endif %}

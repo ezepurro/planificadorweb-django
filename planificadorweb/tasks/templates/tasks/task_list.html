@@ -9,12 +9,13 @@
   <div class="container" style="height: 78vh;">
       <div class="row">
 
+      
+
           {% for member in members_list %}
             <!-- Tarjeta -->
             <div class="col-sm-4"">
                 <div class="card" style="width: 18rem; margin: 30px; border-radius: 20px;">
                     <div class="card-body">
-
                       <div class="header" style="display: flex;">
                         <div style="flex: 1;">
                           <h5 class="card-title"> <a href="{% url 'member_detail' %}" style="text-decoration: none; color: black;">{{member.name}}</a> </h5>
@@ -44,7 +45,7 @@
                     </ul>
                     <a href="{% url 'member_detail' member.id %}" class="btn btn-primary" style="background-color: black; border: none; width: 49%;">Ver detalles</a>
                     {% if user.is_staff %}
-                      <a href="{% url 'add_task' %}" class="btn btn-primary" style="background-color: rgb(63, 112, 55);; border: none; width: 49%;">Añadir tareas</a>
+                      <a href="{% url 'add_task' member.user.id %}" class="btn btn-primary" style="background-color: rgb(63, 112, 55);; border: none; width: 49%;">Añadir tareas</a>
                     {% endif %}
                     </div>
                 </div>                

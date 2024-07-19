@@ -10,6 +10,11 @@ from django import forms
 from .forms import ProfileForm
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+# from django.contrib.auth.models import User
+# from django.shortcuts import get_object_or_404
+# from django.contrib.auth.models import User
+
+
 
 # Create your views here.
 
@@ -53,6 +58,14 @@ class ProfileUpdate(UpdateView):
 class MemberDetail(DetailView):
     model = Member
     template_name = 'registration/member_detail.html'
+
+    # member = get_object_or_404(Member, user__user__username=username)
+
+    # user = User.objects.get(username=Member.user.username)
+    # last_login = user.last_login
+    # print(last_login)
+
+
 
 
 def logoutexp(request):

@@ -4,6 +4,6 @@ from .models import Member
 # Register your models here.
 
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ('user', 'name', 'avatar')
+    list_display = ('user', 'name', 'avatar', 'id')
 
 admin.site.register(Member, MemberAdmin)

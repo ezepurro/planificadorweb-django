@@ -1,15 +1,17 @@
-from django.http.response import HttpResponse as HttpResponse
+# from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
-from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import Task
 from .forms import TaskForm
 from registration.models import Member
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+
 
 
 class StaffRequiredMixin(object):
@@ -40,29 +42,28 @@ class Dashboard(ListView):
 class TaskDetail(DetailView):
     model = Task
 
-# Cambiar a TaskCreateView
-# @method_decorator(staff_member_required, name='dispatch')
-def add_task(request):
-    task_form = TaskForm()
 
-    if request.method == "POST":
-        task_form = TaskForm(data=request.POST)
-        if task_form.is_valid():
-            current_title = request.POST.get('title', '')
-            current_description = request.POST.get('description', '')
-            current_expiration = request.POST.get('expiration', '')
-            # Cambiar target al usuario correcto
-            current_target = request.user
-            current_author = request.user
-            print("Title:", current_title, "Description:", current_description, "Expiration:", current_expiration, "Target:", current_target, "Author:", current_author)
-            new_task = Task(title = current_title, description = current_description, author = current_author, target = current_target, expiration = current_expiration)
-            new_task.save()
-            return redirect('../dashboard/')
 
-    if not request.user.is_staff:
-        return redirect('login')
+@method_decorator(staff_member_required, name='dispatch')
+class TaskCreateView(CreateView):
+    model = Task
+    success_url = reverse_lazy("dashboard")
+    form_class = TaskForm
 
-    return render(request, "tasks/add_task.html", {'form': task_form})
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.target= User.objects.get(pk=self.kwargs['pk'])
+        form.save()
+        return super(TaskCreateView, self).form_valid(form)
+
+"""
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] =  User.objects.all()
+        context['user'] = get_object_or_404(User, pk=self.kwargs['pk'])
+        print(context['user'])
+        return context
+"""  
 
 
 @method_decorator(staff_member_required, name='dispatch')
@@ -73,7 +74,7 @@ class TaskDeleteView(DeleteView):
 
 
 @method_decorator(staff_member_required, name='dispatch')
-class TaskUpdateView(StaffRequiredMixin, UpdateView):
+class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
     template_name_suffix = "_update_form"
