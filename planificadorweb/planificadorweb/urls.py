@@ -22,8 +22,6 @@ from django.conf import settings
 urlpatterns = [
     # Path core
     path('', include('core.urls')),
-    # Path users
-    path('members/', include('users.urls')),
     # Path tasks
     path('tasks/', include('tasks.urls')),
     # Path Auth
