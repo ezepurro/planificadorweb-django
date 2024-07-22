@@ -23,7 +23,7 @@
                             </div>      
                             <h5 class="card-title">{{member.name}}</h5> 
                             {% if user == member.user%}                  
-                                <a href="#" class="btn btn-primary delete-button">Borrar miembro</a>   
+                                <a href="{% url 'user_delete' member.user.id %}" class="btn btn-primary delete-button">Borrar miembro</a>   
                             {% endif %}
                         </div>                          
                     </div>

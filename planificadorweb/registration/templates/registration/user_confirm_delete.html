@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Eliminar "{{task.title}}" {% endblock %}
+
+{% block content %}
+
+
+    <!-- Content -->
+    <div class="container container-per">
+        <div class="row">
+            <div class="card confirm-delete">
+                <div class="row">
+                    <div class="col-11">
+                        <div class="card-body">
+                            <h5 class="card-title">Desea eliminar "<b>{{object}}</b>" ?</h5>
+                            <form method="post">{% csrf_token %}
+                                {{ form }}
+                                <input type="submit" value="Eliminar tarea" class="btn btn-primary delete-button">
+                            </form>
+                        </div>                    
+                    </div>
+                    <div class="col-1">
+                        <a href="{% url 'dashboard' %}" class="exit-button"><h3>🢀</h3></a>
+                    </div>                    
+                </div>
+
+            </div>
+        </div>            
+    </div>
+
+
+
+{% endblock %}
