@@ -5,17 +5,7 @@
 {% block content %}
 
     <style>
-        .errorlist li{
-            color: white;
-            display: block;
-        }
-
         label{
-            display:none;
-        }
-        
-        .helptext{
-            color: white;
             display:none;
         }
 
@@ -26,12 +16,12 @@
     </style>
 
     <!-- Content -->
-    <div class="container" style="height: 78vh;">
+    <div class="container container-per">
         <form action="" method="post">
             {% csrf_token %} 
-            <div style="padding: 100px">
+            <div class="member-form">
                 {{form.as_p}}
-                <input type="submit" value="Añadir Usuario" class="btn btn-primary" style="background-color: rgb(63, 112, 55); border: none; width: 100%; padding: 20px; margin: 20px; cursor: pointer;">
+                <input type="submit" value="Añadir Usuario" class="btn btn-primary submit">
             </div>
         </form>
     </div>

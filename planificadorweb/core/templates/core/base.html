@@ -3,118 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planificador de Tareas | {% block title %} {% endblock %}</title>
+    <title> {% block title %} {% endblock %}</title>
 
 
 
     {% load static %}
     <!-- Bootstarp css -->
     <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+     <!-- Css -->
+    <link href="{% static 'core/css/styles.css' %}" rel="stylesheet">
     <!-- Fontawesome -->
     <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <!-- Fuentes -->
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'core/img/apple-touch-icon.png'%}"> 
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'core/img/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'core/img/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'core/img/site.webmanifest'%}">
+    <link rel="mask-icon" href="{% static 'core/img/safari-pinned-tab.svg'%}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
-<body style="background-color: rgb(15, 15, 15);">
-    <!-- Header -->
-    <header>
-        <nav class="navbar" style="padding: 0px 0px 0px 0px;">
-                    
-                <div class="container-fluid" style="background-color: black;">
-                    <div class="col-sm-8" >
-                      <ul class="list-inline text-left">
-                        <li class="list-inline-item">
-                          <a class="navbar-brand" href="{% url 'home' %}"  style="padding: 20px;"><h4 style="color: whitesmoke;">Planificador de Tareas</h4></a>
-                        </li>
-                        {% if user.is_authenticated %}
-                          <li class="list-inline-item">
-                            <h6 style="color: whitesmoke;">| Bienvenido <b><a href="{% url 'profile_form' %}" style="color: whitesmoke;">{{user}}</a></b>!</h6>
-                          </li>
-                        {% endif %}
-                      </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <ul class="list-inline text-right">
-                          {% if not user.is_authenticated %}
-                              <li class="list-inline-item">
-                                  <a href="{% url 'login' %}" class="nav-link" style="color: whitesmoke;">Iniciar Sesión</a>
-                              </li>
-                          {% else %}
-                              <li class="list-inline-item">
-                                  <a href="{% url 'profile_form' %}" class="nav-link" style="color: whitesmoke;">Editar Perfil</a>
-                              </li>
-                              <li class="list-inline-item">
-                              
-                              <a href="{% url 'logoutexp' %}" class="nav-link" style="color: whitesmoke;">Cerrar Sesión</a>
-                              <!-- 
-                                  <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="" style="background: none; border: none; color: whitesmoke; cursor: pointer;">Cerrar Sesión</button>
-                                  </form>
-                                -->
-                              </li>   
-                              {% if user.is_staff %}
-                                <li class="list-inline-item">
-                                    <a href="{% url 'add_member' %}" class="nav-link" style="color: whitesmoke;">Añadir miembro</a>
-                                </li>    +
-                                {% endif %}                   
-                          {% endif %}
+<body>
 
-
+  <div class="main-container">
+        <!-- Header -->
+        <header>
+            <nav class="navbar navbar-per">                   
+                    <div class="container-fluid">
+                        <div class="col-sm-8" >
+                          <ul class="list-inline text-left">
+                            <li class="list-inline-item">
+                              <a class="navbar-brand" href="{% url 'home' %}"><h4>Planificador de Tareas</h4></a>
+                            </li>
+                            {% if user.is_authenticated %} 
+                              <li class="list-inline-item list-welcome-per">
+                                <h6>| Bienvenido <b><a href="{% url 'profile_form' %}">{{user}}</a></b>!</h6>
+                              </li>
+                            {% endif %}
                           </ul>
-                    </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <ul class="list-inline text-right">
+                              {% if not user.is_authenticated %}
+                                  <li class="list-inline-item">
+                                      <a href="{% url 'login' %}" class="nav-link">Iniciar Sesión</a>
+                                  </li>
+                              {% else %}
+                                  <li class="list-inline-item">
+                                      <a href="{% url 'profile_form' %}" class="nav-link">Editar Perfil</a>
+                                  </li>
+                                  <li class="list-inline-item">                                  
+                                      <a href="{% url 'logoutexp' %}" class="nav-link">Cerrar Sesión</a>
+                                  </li>   
+                                  {% if user.is_staff %}
+                                    <li class="list-inline-item">
+                                        <a href="{% url 'add_member' %}" class="nav-link">Añadir miembro</a>
+                                    </li>    +
+                                    {% endif %}                   
+                              {% endif %}
+                              </ul>
+                        </div>
+                    </div>            
+            </nav>
+        </header>
+
+
+
+        <!-- Content -->
+        {% block content %} {% endblock %}
+
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                  <ul class="list-inline text-center">
+                    <li class="list-inline-item">
+                      <a href="https://www.instagram.com/ezepurro/" target="_blank">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://www.linkedin.com/in/ezequiel-purro-75920b7a/" target="_blank">
+                        <span class="fa-stack fa-lg" >
+                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://github.com/ezepurro" target="_blank">
+                        <span class="fa-stack fa-lg">                        
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                  <p class="copyright">Copyright &copy; 2024 · Ezequiel Purro </p>
                 </div>
+              </div>
             </div>
-        </nav>
-    </header>
+          </footer>
 
 
-
-    <!-- Content -->
-    {% block content %} {% endblock %}
-
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container-fluid" style="background-color: black;">
-          <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-              <ul class="list-inline text-center">
-                <li class="list-inline-item">
-                  <a href="https://www.instagram.com/ezepurro/" target="_blank">
-                    <span class="fa-stack fa-lg" style="padding: 15px;">
-                        <i class="fa fa-instagram fa-stack-1x fa-inverse" style="color: whitesmoke;"></i>
-                    </span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="https://www.linkedin.com/in/ezequiel-purro-75920b7a/" target="_blank">
-                    <span class="fa-stack fa-lg" style="padding: 15px;">
-                        <i class="fa fa-linkedin fa-stack-1x fa-inverse" style="color: whitesmoke;"></i>
-                    </span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="https://github.com/ezepurro" target="_blank">
-                    <span class="fa-stack fa-lg" style="padding: 15px;">                        
-                        <i class="fa fa-github fa-stack-1x fa-inverse" style="color: whitesmoke;"></i>
-                    </span>
-                  </a>
-                </li>
-              </ul>
-              <p class="copyright" style="text-align: center; color: whitesmoke; padding: 10px;">Copyright &copy; 2024 · Ezequiel Purro </p>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-
-    <!-- Bootstarp js -->
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <!-- Jquery -->
-    <!-- <script src="vendor/jquery/jquery.min.js"></script>  -->
+        <!-- Bootstarp js -->
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  </div>
 </body>
 </html>

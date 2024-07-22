@@ -6,34 +6,34 @@
 
 
     <!-- Content -->
-    <div class="container"  style="height: 78vh;">
+    <div class="container container-per">
         <div class="row">
-            <div class="card" style="width: 100%;  background-color: rgb(15, 15, 15)" >
+            <div class="card task-detail">
                 <div class="row">
-                    <div class="col" style="padding: 40px;">
+                    <div class="col">
                         <div class="card-body">
-                            <h5 class="card-title" style="color: whitesmoke;">{{task.title}}</h5>
-                            <p class="card-text" style="padding-top: 30px; padding-bottom: 30px; color: whitesmoke;">{{task.description}}</p>
+                            <h5 class="card-title">{{task.title}}</h5>
+                            <p class="card-text">{{task.description}}</p>
                             
                             {% if not task.isDone %}
                                 {% if user == task.target %}
                                 
                                     <form method="POST" action="">
                                         {% csrf_token %}
-                                        <input type="submit" value="Marcar como completada" class="btn btn-primary" style="background-color: rgb(2, 82, 2); border: none; cursor: pointer;">
+                                        <input type="submit" value="Marcar como completada" class="btn btn-primary as-done">
                                     </form>
                                     
                                 {% endif %}
                                 {% if user == task.author %}
-                                    <a href="{% url 'task_delete' task.id %}" class="btn btn-primary" style="background-color: #cc0022; border: none;">Eliminar tarea</a>
-                                    <a href="{% url 'task_update' task.id %}" class="btn btn-primary" style="background-color: #b39a36; border: none;">Editar tarea</a>
+                                    <a href="{% url 'task_delete' task.id %}" class="btn btn-primary delete-button" >Eliminar tarea</a>
+                                    <a href="{% url 'task_update' task.id %}" class="btn btn-primary edit-button">Editar tarea</a>
                                 {% endif %}
                             {% endif %}
 
                         </div>                    
                     </div>
                     <div class="col" style="text-align: right;">
-                        <a href="{% url 'dashboard' %}" style="color: whitesmoke; text-decoration: none;"><h3 style="padding: 40px">🢀</h3></a>
+                        <a href="{% url 'dashboard' %}" class="exit-button"><h3>🢀</h3></a>
                     </div>                    
                 </div>
 

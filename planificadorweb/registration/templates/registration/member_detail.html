@@ -5,29 +5,33 @@
 {% block content %}
 
 {% load static %}
+
     <!-- Content -->    
-    <div class="container" style="height: 78vh;">
+    <div class="container container-per">
         <div class="row">
-            <div class="card" style="width: 100%; background-color: rgb(15, 15, 15)">
+            <div class="card member-detail">
                 <div class="row">
-                    <div class="card-body" style="text-align: center;">                        
-                        <div class="contenedor-imagen-redonda" style="width: 400px; height: 400px; border-radius: 50%; overflow: hidden; margin-left: 30%; margin-top: 30px;">
-                            {% if member.avatar %}
-                              <img src="{{member.avatar.url}}" class="img-fluid">
-                            {% else %}
-                              <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
-                            {% endif %} 
-                            <br>       
-                        </div>      
-                        <h5 class="card-title" style="margin: 25px; color: whitesmoke;">{{member.name}}</h5> 
-                        {% if user == member.user%}                  
-                            <a href="#" class="btn btn-primary" style="background-color: rgb(129, 37, 37); border: none;">Borrar miembro</a>   
-                        {% endif %}
-                    </div>                    
-                    <a href="{% url 'dashboard' %}" style="color: whitesmoke; text-decoration: none;"><h3 style="padding: 40px">🢀</h3></a>
+                    <div class="col-11">
+                        <div class="card-body">                        
+                            <div class="contenedor-imagen-redonda">
+                                {% if member.avatar %}
+                                    <img src="{{member.avatar.url}}" class="img-fluid">
+                                {% else %}
+                                    <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
+                                {% endif %} 
+                                <br>       
+                            </div>      
+                            <h5 class="card-title">{{member.name}}</h5> 
+                            {% if user == member.user%}                  
+                                <a href="#" class="btn btn-primary delete-button">Borrar miembro</a>   
+                            {% endif %}
+                        </div>                          
+                    </div>
+                    <div class="col-1">
+                        <a href="{% url 'dashboard' %}" class="exit-button"><h3>🢀</h3></a>                       
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 

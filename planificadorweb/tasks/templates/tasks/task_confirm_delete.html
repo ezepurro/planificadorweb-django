@@ -6,21 +6,21 @@
 
 
     <!-- Content -->
-    <div class="container"  style="height: 78vh;">
+    <div class="container container-per">
         <div class="row">
-            <div class="card" style="width: 100%;  background-color: rgb(15, 15, 15)" >
+            <div class="card confirm-delete">
                 <div class="row">
-                    <div class="col" style="padding: 40px;">
+                    <div class="col-11">
                         <div class="card-body">
-                            <h5 class="card-title" style="color: whitesmoke;">Desea eliminar "<b>{{object}}</b>" ?</h5>
+                            <h5 class="card-title">Desea eliminar "<b>{{object}}</b>" ?</h5>
                             <form method="post">{% csrf_token %}
                                 {{ form }}
-                                <input type="submit" value="Eliminar tarea" class="btn btn-primary" style="background-color: #cc0022; border: none;">
+                                <input type="submit" value="Eliminar tarea" class="btn btn-primary delete-button">
                             </form>
                         </div>                    
                     </div>
-                    <div class="col" style="text-align: right;">
-                        <a href="{% url 'dashboard' %}" style="color: whitesmoke; text-decoration: none;"><h3 style="padding: 40px">🢀</h3></a>
+                    <div class="col-1">
+                        <a href="{% url 'dashboard' %}" class="exit-button"><h3>🢀</h3></a>
                     </div>                    
                 </div>
 

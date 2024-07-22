@@ -5,18 +5,18 @@
 {% block content %}
 
     <!-- Content -->
-    <div class="container" style="height: 78vh;">
+    <div class="container container-per">
         
         <form action="" method="POST">
                 {% csrf_token %}
-                <div style="padding: 10px">
+                <div class="task-form">
                 
                     {{form.title}}
                     {{form.description}}
                     {{form.expiration}}
 
 
-                    <input type="submit" value="Añadir" class="btn btn-primary" style="background-color: rgb(63, 112, 55); border: none; width: 100%; padding: 20px; margin: 20px; cursor: pointer; " />
+                    <input type="submit" value="Añadir" class="btn btn-primary submit"/>
                 </div>    
         </form>
     </div>

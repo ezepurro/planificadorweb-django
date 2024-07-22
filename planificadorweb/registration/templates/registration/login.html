@@ -1,17 +1,17 @@
 {% extends 'core/base.html' %}
 
-{% block title %} Añadir tarea {% endblock %}
+{% block title %} Iniciar Sesión {% endblock %}
 
 {% block content %}
 
     <!-- Content -->
-    <div class="container" style="height: 78vh;">
+    <div class="container container-per">
         <form action="" method="post">
             {% csrf_token %}
-            <div style="padding: 100px">
-                <input type="text" class="form-control"  placeholder="Usuario" style="padding: 20px; margin: 20px; margin-top: 60px;" required id="id_username" name="username">
-                <input type="password" class="form-control"  placeholder="Contraseña" style="padding: 20px; margin: 20px; margin-top: 60px;" required id="id_password" name="password">
-                <input type="submit" class="btn btn-primary btn-block" value="Acceder" style="background-color: rgb(63, 112, 55); border: none; width: 100%; padding: 20px; margin: 40px 20px 0px 20px;  cursor:pointer;">        
+            <div class="member-form">
+                <input type="text" class="form-control user-form"  placeholder="Usuario" required id="id_username" name="username">
+                <input type="password" class="form-control user-form"  placeholder="Contraseña" required id="id_password" name="password">
+                <input type="submit" class="btn btn-primary btn-block submit" value="Acceder">        
             </div>
         </form>
     </div>
