@@ -39,8 +39,17 @@ class Dashboard(ListView):
 
 
 
-class TaskDetail(DetailView):
+class TaskDetail(UpdateView):
     model = Task
+    template_name = 'tasks/task_detail.html'
+    fields = []
+    success_url = reverse_lazy("dashboard")
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.isDone = True
+        form.save()
+        return super(UpdateView, self).form_valid(form)
 
 
 
