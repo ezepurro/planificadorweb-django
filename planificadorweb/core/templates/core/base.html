@@ -36,7 +36,7 @@
             <nav class="navbar navbar-per">                   
                     <div class="container-fluid">
                         <div class="col-sm-8" >
-                          <ul class="list-inline text-left">
+                          <ul class="list-inline text-center">
                             <li class="list-inline-item">
                               <a class="navbar-brand" href="{% url 'home' %}"><h4>Planificador de Tareas</h4></a>
                             </li>
@@ -48,7 +48,7 @@
                           </ul>
                         </div>
                         <div class="col-sm-4">
-                            <ul class="list-inline text-right">
+                            <ul class="list-inline text-center">
                               {% if not user.is_authenticated %}
                                   <li class="list-inline-item">
                                       <a href="{% url 'login' %}" class="nav-link">Iniciar Sesión</a>
@@ -81,33 +81,35 @@
 
         <!-- Footer -->
         <footer>
-            <div class="container-fluid">
+            <div class="container-fluid ">
               <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
-                  <ul class="list-inline text-center">
-                    <li class="list-inline-item">
-                      <a href="https://www.instagram.com/ezepurro/" target="_blank">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="https://www.linkedin.com/in/ezequiel-purro-75920b7a/" target="_blank">
-                        <span class="fa-stack fa-lg" >
-                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="https://github.com/ezepurro" target="_blank">
-                        <span class="fa-stack fa-lg">                        
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                  <p class="copyright">Copyright &copy; 2024 · Ezequiel Purro </p>
+                    {% block footer %} {% endblock %}
+                    <ul class="list-inline text-center">
+                      <li class="list-inline-item">
+                        <a href="https://www.instagram.com/ezepurro/" target="_blank">
+                          <span class="fa-stack fa-lg">
+                              <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/ezequiel-purro-75920b7a/" target="_blank">
+                          <span class="fa-stack fa-lg" >
+                              <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="https://github.com/ezepurro" target="_blank">
+                          <span class="fa-stack fa-lg">                        
+                              <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                    <p class="copyright">Copyright &copy; 2024 · Ezequiel Purro </p>
+                  </div>
                 </div>
               </div>
             </div>

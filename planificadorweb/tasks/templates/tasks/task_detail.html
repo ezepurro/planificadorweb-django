@@ -10,8 +10,8 @@
         <div class="row">
             <div class="card task-detail">
                 <div class="row">
-                    <div class="col">
-                        <div class="card-body">
+                    <div class="col-sm-11 col-md-8 col-lg-10 ">
+                        <div class="card-body text-center">
                             <h5 class="card-title">{{task.title}}</h5>
                             <p class="card-text">{{task.description}}</p>
                             
@@ -32,7 +32,7 @@
 
                         </div>                    
                     </div>
-                    <div class="col" style="text-align: right;">
+                    <div class="col-sm-1 col-md-4 col-lg-2 text-center" >
                         <a href="{% url 'dashboard' %}" class="exit-button"><h3>🢀</h3></a>
                     </div>                    
                 </div>
@@ -43,4 +43,8 @@
 
 
 
+{% endblock %}
+
+{% block footer %}
+    <div class="fixed-bottom">
 {% endblock %}

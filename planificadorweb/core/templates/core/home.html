@@ -10,7 +10,7 @@
       <div class="row">
 
           <!-- Home   -->
-          <div class="container-fluid">
+          <div class="col-sm-12 col-md-12 col-lg-12">
 
               <h2 class="home-main-title">El más eficiente planificador de tareas<div class="dots">...</div></h2>
               <a href="{% url 'dashboard' %}" class="dashboard-redirect"><p>Ir al tablero</p></a>
@@ -22,3 +22,6 @@
   </div>
 {% endblock %}
 
+{% block footer %}
+    <div class="fixed-bottom">
+{% endblock %}

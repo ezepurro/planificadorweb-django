@@ -21,18 +21,22 @@
                     <div class="row avatar-update">
                         <!-- Avatar -->
                         <div class="col-md-2">
-                        {% if request.user.member.avatar %}
-                            <img src="{{request.user.member.avatar.url}}" class="img-fluid">
-                            <p class="mt-1">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
-                        {% else %}
-                            <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
-                        {% endif %}
+                            <div style="padding: 20px;">
+                                {% if request.user.member.avatar %}
+                                    <img src="{{request.user.member.avatar.url}}" class="img-fluid">
+                                    <p class="mt-1">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
+                                {% else %}
+                                    <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
+                                {% endif %}
+                            </div>
                         </div>
                         <!-- Form -->
                         <div class="col-md-10">
-                        <input type="file" name="avatar" class="form-control-file" id="id_avatar">
-                        {{ form.name }}
-                        <input type="submit" class="btn btn-primary submit-button" value="Actualizar">
+                            <div style="padding: 20px;">
+                                <input type="file" name="avatar" class="form-control-file" id="id_avatar">
+                                {{ form.name }}
+                                <input type="submit" class="btn btn-primary submit-button" value="Actualizar">
+                            </div>
                         </div>
                     </div>
                 </form>

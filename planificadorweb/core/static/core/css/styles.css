@@ -4,9 +4,6 @@ html, body {
 }
 
 
-
-
-
 .navbar-per {
     padding: 0%;
     background-color: black;
@@ -42,7 +39,11 @@ a span i {
     color: whitesmoke;
 }
 
-footer {
+footer{
+    background-color: black;
+}
+
+footer .fixed-bottom{
     background-color: black;
 }
 
@@ -54,9 +55,8 @@ footer p {
 
 .container-per .home-main-title{
     color: white;
-    font-size: 500%;
-    padding: 10% 10% 4% 10%;
-    margin: 0%;
+    font-size: 380%;
+    padding: 10% 0% 0% 5%;
 }
 
 .container-per .home-main-title .dots{
@@ -65,7 +65,9 @@ footer p {
 
 .container-per .dashboard-redirect p{
     color: white;
-    padding: 0% 10% 5% 10%;
+    padding: 2% 0% 0% 5%;
+    margin-bottom: 90px;
+    
 }
 
 .helptext{
@@ -79,7 +81,7 @@ footer p {
 }
 
 .container-per .member-form{
-    padding: 100px;
+    padding: 50px;
 }
 
 .container-per .submit{
@@ -100,15 +102,11 @@ footer p {
     width: 100%;
     background-color: rgb(15, 15, 15);
     text-align: center;
+    margin: 50px 0px 50px 0px;
 }
 
-.container-per .member-detail .contenedor-imagen-redonda{
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-left: 30%;
-    margin-top: 30px;
+.container-per .member-detail .contenedor-imagen-redonda img{
+    width: 150px;
 }
 
 .container-per .member-detail h5{
@@ -165,6 +163,7 @@ footer p {
 .container-per .task-detail{
     width: 100%; 
     background-color: rgb(15, 15, 15);
+    margin: 60px 0px 60px 0px;
 }
 
 .container-per .task-detail .col{
@@ -195,7 +194,8 @@ footer p {
 }
 
 .container-per .task-form{
-    padding: 10px;
+    padding: none;
+    margin: none;
 }
 
 .container-per .update-task-form{

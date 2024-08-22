@@ -6,20 +6,27 @@
 
     <!-- Content -->
     <div class="container container-per">
-        
-        <form action="" method="POST">
-                {% csrf_token %}
-                <div class="task-form">
-                
-                    {{form.title}}
-                    {{form.description}}
-                    {{form.expiration}}
-
-
-                    <input type="submit" value="Añadir" class="btn btn-primary submit"/>
-                </div>    
-        </form>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="task-form">
+                        
+                            {{form.title}}
+                            {{form.description}}
+                            {{form.expiration}}
+    
+    
+                            <input type="submit" value="Añadir" class="btn btn-primary submit"/>
+                        </div>    
+                </form>
+            </div>
+        </div>
     </div>
 
 
+{% endblock %}
+
+{% block footer %}
+    <div class="fixed-bottom">
 {% endblock %}
